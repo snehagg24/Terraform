@@ -1,2 +1,2 @@
-variable "ssh_key" {
+variable "public_sshkey" {
 }

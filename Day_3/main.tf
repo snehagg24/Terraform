@@ -35,15 +35,16 @@ data "ibm_is_image" "ubuntu" {
   name = "ibm-ubuntu-18-04-1-minimal-amd64-1"
 }
 
-data "ibm_is_ssh_key" "ssh_key_id" {
-  name = var.ssh_key
+resource "ibm_is_ssh_key" "ssh_key_id" {
+    name = "${local.BASENAME}-sshkey"
+    public_key = var.public_sshkey
 }
 
 resource "ibm_is_instance" "vsi1" {
   name    = "${local.BASENAME}-vsi1"
   vpc     = ibm_is_vpc.vpc.id
   zone    = local.ZONE
-  keys    = [data.ibm_is_ssh_key.ssh_key_id.id]
+  keys    = [ibm_is_ssh_key.ssh_key_id.id]
   image   = data.ibm_is_image.ubuntu.id
   profile = "bx2-2x8"
   volumes = [ibm_is_volume.testacc_volume.id]
