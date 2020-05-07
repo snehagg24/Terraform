@@ -1,6 +1,3 @@
-variable "ssh_key" {
-}
-
 locals {
   BASENAME = "sneha-test"
   ZONE     = "us-south-1"
@@ -68,8 +65,4 @@ resource "ibm_is_volume" "testacc_volume" {
 resource "ibm_is_floating_ip" "fip1" {
   name   = "${local.BASENAME}-fip1"
   target = ibm_is_instance.vsi1.primary_network_interface[0].id
-}
-
-output "sshcommand" {
-  value = "ssh -i <private_key> root@${ibm_is_floating_ip.fip1.address}"
 }

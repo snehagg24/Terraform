@@ -1,0 +1,2 @@
+variable "ssh_key" {
+}
