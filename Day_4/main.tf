@@ -24,13 +24,6 @@ resource "null_resource" "vsi1-scripts" {
     destination = "/var/www/html/index.html"
   }
 
-  //wait for webpage to be hosted  
-  provisioner "remote-exec" {
-    inline = [
-	  "sleep 10"
-	]
-  }
-
   provisioner "remote-exec" {
     when = destroy
     inline = [
