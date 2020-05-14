@@ -1,7 +1,7 @@
 locals {
   BASENAME       = "sneha-test"
   ZONE           = "us-south-1"
-  sshkey-private = file("modules/instance/data/id_rsa")
+  sshkey-private = file("${path.root}/data/id_rsa")
 }
 
 resource "ibm_is_vpc" "vpc" {
@@ -79,8 +79,8 @@ data "ibm_is_image" "ubuntu" {
 }
 
 resource "ibm_is_ssh_key" "ssh_key_id" {
-    name = "${local.BASENAME}-sshkey"
-    public_key = var.public_key
+  name = "${local.BASENAME}-sshkey"
+  public_key = var.public_key
 }
 
 resource "ibm_is_instance" "vsi1" {

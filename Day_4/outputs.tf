@@ -1,3 +1,3 @@
-output "webpage_url" {
-  value = data.http.download_file.body
+output "webpage_body" {
+  value = data.http.webpage.body
 }

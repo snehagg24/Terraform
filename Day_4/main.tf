@@ -8,7 +8,7 @@ resource "null_resource" "vsi1-scripts" {
   connection {
     type        = "ssh"
     user        = "root"
-    private_key = file("modules/instance/data/id_rsa")
+    private_key = file("${path.root}/data/id_rsa")
     host        = module.server.instance_ip
   }
 
@@ -33,6 +33,6 @@ resource "null_resource" "vsi1-scripts" {
   }
 }
 
-data "http" "download_file" {
-  url = "http://${module.server.instance_ip}"
+data "http" "webpage" {
+  url = "http://${module.server.instance_ip}:80"
 }
