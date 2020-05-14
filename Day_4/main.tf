@@ -14,7 +14,7 @@ resource "null_resource" "vsi1-scripts" {
 
   provisioner "remote-exec" {
     inline = [
-	  "sudo apt-get -y update",
+      "sudo apt-get -y update",
       "sudo apt-get -y install apache2"
     ]
   }
@@ -27,7 +27,7 @@ resource "null_resource" "vsi1-scripts" {
   provisioner "remote-exec" {
     when = destroy
     inline = [
-	  "rm /var/www/html/index.html",
+      "rm /var/www/html/index.html",
       "sudo apt-get -y remove apache2"
     ]
   }
